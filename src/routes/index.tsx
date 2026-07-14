@@ -32,7 +32,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Toaster, toast } from "sonner";
-import heroAura from "@/assets/hero-aura.jpg";
+import heroAura from "@/assets/hero-warm.jpg";
 
 export const Route = createFileRoute("/")({
   component: LandingPage,
@@ -235,9 +235,9 @@ function Hero() {
           alt=""
           width={1536}
           height={1536}
-          className="absolute right-[-20%] top-[-10%] w-[80%] max-w-[900px] opacity-70 animate-float mix-blend-screen"
+          className="absolute right-[-15%] top-[-8%] w-[80%] max-w-[900px] opacity-80 animate-float mix-blend-multiply"
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-background/40 to-background" />
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-background/30 to-background" />
       </div>
 
       {/* Particles */}
