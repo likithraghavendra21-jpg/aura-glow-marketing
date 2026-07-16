@@ -8,6 +8,7 @@ import {
   Star,
   Radio,
   BarChart3,
+  Globe,
   Phone,
   Mail,
   MapPin,
@@ -40,6 +41,7 @@ import linkedinImg from "@/assets/services/linkedin.jpg";
 import reviewsImg from "@/assets/services/reviews.jpg";
 import offlineImg from "@/assets/services/offline.jpg";
 import analyticsImg from "@/assets/services/analytics.jpg";
+import websiteImg from "@/assets/services/website.jpg";
 
 export const Route = createFileRoute("/")({
   component: LandingPage,
@@ -53,6 +55,7 @@ const services = [
   { icon: Star, image: reviewsImg, title: "Google Review & Reputation", desc: "Systematically build 5-star reviews and dominate local search trust signals." },
   { icon: Radio, image: offlineImg, title: "Offline & Hybrid Marketing", desc: "Outdoor billboards, print, and event marketing integrated with your digital funnel." },
   { icon: BarChart3, image: analyticsImg, title: "Lead Gen Systems & Analytics", desc: "Custom CRM, tracking, and dashboards so every rupee spent is measured and optimized." },
+  { icon: Globe, image: websiteImg, title: "Website Design & Development", desc: "Custom, fast-loading websites designed to convert visitors into leads and sales for your business." },
 ];
 
 const stats = [
