@@ -93,6 +93,11 @@
   box-shadow: var(--shadow-soft);
 }
 
+@utility bg-aura {
+  background-image: var(--gradient-aura);
+  background-color: var(--primary);
+}
+
 @utility text-gradient {
   background: var(--gradient-aura);
   -webkit-background-clip: text;

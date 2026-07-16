@@ -33,47 +33,26 @@ import {
 } from "@/components/ui/select";
 import { Toaster, toast } from "sonner";
 import heroAura from "@/assets/hero-warm.jpg";
+import seoImg from "@/assets/services/seo.jpg";
+import socialImg from "@/assets/services/social.jpg";
+import adsImg from "@/assets/services/ads.jpg";
+import linkedinImg from "@/assets/services/linkedin.jpg";
+import reviewsImg from "@/assets/services/reviews.jpg";
+import offlineImg from "@/assets/services/offline.jpg";
+import analyticsImg from "@/assets/services/analytics.jpg";
 
 export const Route = createFileRoute("/")({
   component: LandingPage,
 });
 
 const services = [
-  {
-    icon: Search,
-    title: "SEO & Content Creation",
-    desc: "Rank higher, capture organic traffic, and turn content into a compounding revenue engine.",
-  },
-  {
-    icon: Share2,
-    title: "Social Media & Influencer Marketing",
-    desc: "Build a magnetic brand presence across Instagram, TikTok, and YouTube with proven creators.",
-  },
-  {
-    icon: Megaphone,
-    title: "Google & Meta Ads Management",
-    desc: "Performance-driven paid campaigns optimized daily to lower CPA and scale profitably.",
-  },
-  {
-    icon: Linkedin,
-    title: "LinkedIn B2B Lead Generation",
-    desc: "Fill your pipeline with qualified decision-makers through outbound and organic LinkedIn.",
-  },
-  {
-    icon: Star,
-    title: "Google Review & Reputation",
-    desc: "Systematically build 5-star reviews and dominate local search trust signals.",
-  },
-  {
-    icon: Radio,
-    title: "Offline & Hybrid Marketing",
-    desc: "Outdoor billboards, print, and event marketing integrated with your digital funnel.",
-  },
-  {
-    icon: BarChart3,
-    title: "Lead Gen Systems & Analytics",
-    desc: "Custom CRM, tracking, and dashboards so every rupee spent is measured and optimized.",
-  },
+  { icon: Search, image: seoImg, title: "SEO & Content Creation", desc: "Rank higher, capture organic traffic, and turn content into a compounding revenue engine." },
+  { icon: Share2, image: socialImg, title: "Social Media & Influencer Marketing", desc: "Build a magnetic brand presence across Instagram, TikTok, and YouTube with proven creators." },
+  { icon: Megaphone, image: adsImg, title: "Google & Meta Ads Management", desc: "Performance-driven paid campaigns optimized daily to lower CPA and scale profitably." },
+  { icon: Linkedin, image: linkedinImg, title: "LinkedIn B2B Lead Generation", desc: "Fill your pipeline with qualified decision-makers through outbound and organic LinkedIn." },
+  { icon: Star, image: reviewsImg, title: "Google Review & Reputation", desc: "Systematically build 5-star reviews and dominate local search trust signals." },
+  { icon: Radio, image: offlineImg, title: "Offline & Hybrid Marketing", desc: "Outdoor billboards, print, and event marketing integrated with your digital funnel." },
+  { icon: BarChart3, image: analyticsImg, title: "Lead Gen Systems & Analytics", desc: "Custom CRM, tracking, and dashboards so every rupee spent is measured and optimized." },
 ];
 
 const stats = [
@@ -171,7 +150,7 @@ function Navbar() {
     >
       <div className="mx-auto max-w-7xl px-6 flex items-center justify-between">
         <a href="#home" className="flex items-center gap-2 group">
-          <div className="relative h-9 w-9 rounded-xl bg-[var(--gradient-aura)] animate-pulse-glow" />
+          <div className="relative h-9 w-9 rounded-xl bg-aura animate-pulse-glow" />
           <span className="text-xl font-bold tracking-tight">
             Aura<span className="text-gradient">Marketi</span>
           </span>
@@ -181,14 +160,14 @@ function Navbar() {
             <a
               key={l.href}
               href={l.href}
-              className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors relative after:absolute after:bottom-0 after:left-0 after:h-px after:w-0 after:bg-[var(--gradient-aura)] hover:after:w-full after:transition-all after:duration-300"
+              className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors relative after:absolute after:bottom-0 after:left-0 after:h-px after:w-0 after:bg-aura hover:after:w-full after:transition-all after:duration-300"
             >
               {l.label}
             </a>
           ))}
         </nav>
         <a href="#contact" className="hidden md:inline-flex">
-          <Button className="btn-glow bg-[var(--gradient-aura)] text-primary-foreground border-0 font-semibold">
+          <Button className="btn-glow bg-aura text-primary-foreground border-0 font-semibold">
             Get a Free Audit <ArrowRight className="ml-1 h-4 w-4" />
           </Button>
         </a>
@@ -214,7 +193,7 @@ function Navbar() {
               </a>
             ))}
             <a href="#contact" onClick={() => setOpen(false)}>
-              <Button className="w-full bg-[var(--gradient-aura)] text-primary-foreground border-0">
+              <Button className="w-full bg-aura text-primary-foreground border-0">
                 Get a Free Audit
               </Button>
             </a>
@@ -265,9 +244,7 @@ function Hero() {
             Full-service growth partner
           </div>
           <h1 className="text-5xl md:text-7xl font-bold leading-[1.05] tracking-tight">
-            Transforming Clicks into Customers.
-            <br />
-            <span className="text-gradient">Elevate Your Aura Online.</span>
+            Where <span className="text-gradient">data meets creativity</span>, businesses grow.
           </h1>
           <p className="mt-8 text-lg md:text-xl text-muted-foreground max-w-2xl leading-relaxed">
             Full-service digital marketing strategies engineered to scale your revenue, capture
@@ -277,7 +254,7 @@ function Hero() {
             <a href="#contact">
               <Button
                 size="lg"
-                className="btn-glow bg-[var(--gradient-aura)] text-primary-foreground border-0 font-semibold text-base px-8 h-14"
+                className="btn-glow bg-aura text-primary-foreground border-0 font-semibold text-base px-8 h-14"
               >
                 Grow My Business <ArrowRight className="ml-2 h-5 w-5" />
               </Button>
@@ -327,12 +304,22 @@ function Services() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {services.map((s, i) => (
             <Reveal key={s.title} delay={i * 80}>
-              <div className="glass rounded-2xl p-8 h-full card-hover group relative overflow-hidden">
-                <div className="absolute -top-20 -right-20 h-40 w-40 rounded-full bg-[var(--gradient-aura)] opacity-0 group-hover:opacity-20 blur-3xl transition-opacity duration-500" />
-                <div className="relative">
-                  <div className="h-14 w-14 rounded-xl bg-[var(--gradient-aura)] grid place-items-center mb-6 group-hover:scale-110 transition-transform duration-300">
-                    <s.icon className="h-7 w-7 text-primary-foreground" />
+              <div className="glass rounded-2xl h-full card-hover group relative overflow-hidden">
+                <div className="relative aspect-[16/10] overflow-hidden">
+                  <img
+                    src={s.image}
+                    alt={s.title}
+                    width={800}
+                    height={512}
+                    loading="lazy"
+                    className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-card/60 via-transparent to-transparent" />
+                  <div className="absolute bottom-3 left-3 h-12 w-12 rounded-xl bg-aura grid place-items-center shadow-lg group-hover:scale-110 transition-transform duration-300">
+                    <s.icon className="h-6 w-6 text-primary-foreground" />
                   </div>
+                </div>
+                <div className="p-7">
                   <h3 className="text-xl font-semibold mb-3">{s.title}</h3>
                   <p className="text-muted-foreground leading-relaxed">{s.desc}</p>
                 </div>
@@ -390,7 +377,7 @@ function WhyUs() {
           ].map((v, i) => (
             <Reveal key={v.title} delay={i * 100}>
               <div className="glass rounded-2xl p-8 card-hover h-full">
-                <div className="h-10 w-10 rounded-lg bg-[var(--gradient-aura)] grid place-items-center mb-5">
+                <div className="h-10 w-10 rounded-lg bg-aura grid place-items-center mb-5">
                   <Check className="h-5 w-5 text-primary-foreground" />
                 </div>
                 <h3 className="text-lg font-semibold mb-2">{v.title}</h3>
@@ -438,7 +425,7 @@ function Contact() {
                   href="tel:9535368816"
                   className="flex items-center gap-4 glass rounded-2xl p-5 card-hover group"
                 >
-                  <div className="h-12 w-12 rounded-xl bg-[var(--gradient-aura)] grid place-items-center shrink-0">
+                  <div className="h-12 w-12 rounded-xl bg-aura grid place-items-center shrink-0">
                     <Phone className="h-5 w-5 text-primary-foreground" />
                   </div>
                   <div className="min-w-0">
@@ -451,7 +438,7 @@ function Contact() {
                   </div>
                 </a>
                 <div className="flex items-center gap-4 glass rounded-2xl p-5">
-                  <div className="h-12 w-12 rounded-xl bg-[var(--gradient-aura)] grid place-items-center shrink-0">
+                  <div className="h-12 w-12 rounded-xl bg-aura grid place-items-center shrink-0">
                     <Mail className="h-5 w-5 text-primary-foreground" />
                   </div>
                   <div className="min-w-0">
@@ -462,7 +449,7 @@ function Contact() {
                   </div>
                 </div>
                 <div className="flex items-center gap-4 glass rounded-2xl p-5">
-                  <div className="h-12 w-12 rounded-xl bg-[var(--gradient-aura)] grid place-items-center shrink-0">
+                  <div className="h-12 w-12 rounded-xl bg-aura grid place-items-center shrink-0">
                     <MapPin className="h-5 w-5 text-primary-foreground" />
                   </div>
                   <div className="min-w-0">
@@ -484,8 +471,8 @@ function Contact() {
               {submitted ? (
                 <div className="min-h-[500px] flex flex-col items-center justify-center text-center animate-fade-up">
                   <div className="relative h-24 w-24 mb-6">
-                    <div className="absolute inset-0 rounded-full bg-[var(--gradient-aura)] animate-pulse-glow" />
-                    <div className="relative h-full w-full rounded-full bg-[var(--gradient-aura)] grid place-items-center">
+                    <div className="absolute inset-0 rounded-full bg-aura animate-pulse-glow" />
+                    <div className="relative h-full w-full rounded-full bg-aura grid place-items-center">
                       <Check className="h-12 w-12 text-primary-foreground" strokeWidth={3} />
                     </div>
                   </div>
@@ -538,7 +525,7 @@ function Contact() {
                   <Button
                     type="submit"
                     size="lg"
-                    className="btn-glow w-full bg-[var(--gradient-aura)] text-primary-foreground border-0 font-semibold h-14 text-base"
+                    className="btn-glow w-full bg-aura text-primary-foreground border-0 font-semibold h-14 text-base"
                   >
                     Send Message <ArrowRight className="ml-2 h-5 w-5" />
                   </Button>
@@ -562,7 +549,7 @@ function Footer() {
         <div className="grid md:grid-cols-4 gap-10">
           <div className="md:col-span-2">
             <div className="flex items-center gap-2">
-              <div className="h-9 w-9 rounded-xl bg-[var(--gradient-aura)] animate-pulse-glow" />
+              <div className="h-9 w-9 rounded-xl bg-aura animate-pulse-glow" />
               <span className="text-xl font-bold">
                 Aura<span className="text-gradient">Marketi</span>
               </span>
@@ -575,7 +562,7 @@ function Footer() {
                 <a
                   key={i}
                   href="#"
-                  className="h-10 w-10 grid place-items-center rounded-xl glass hover:bg-[var(--gradient-aura)] transition-all duration-300 group"
+                  className="h-10 w-10 grid place-items-center rounded-xl glass hover:bg-aura transition-all duration-300 group"
                   aria-label="Social link"
                 >
                   <Icon className="h-4 w-4 group-hover:text-primary-foreground transition-colors" />
