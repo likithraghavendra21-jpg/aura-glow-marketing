@@ -244,9 +244,7 @@ function Hero() {
             Full-service growth partner
           </div>
           <h1 className="text-5xl md:text-7xl font-bold leading-[1.05] tracking-tight">
-            Transforming Clicks into Customers.
-            <br />
-            <span className="text-gradient">Elevate Your Aura Online.</span>
+            Where <span className="text-gradient">data meets creativity</span>, businesses grow.
           </h1>
           <p className="mt-8 text-lg md:text-xl text-muted-foreground max-w-2xl leading-relaxed">
             Full-service digital marketing strategies engineered to scale your revenue, capture
@@ -306,12 +304,22 @@ function Services() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {services.map((s, i) => (
             <Reveal key={s.title} delay={i * 80}>
-              <div className="glass rounded-2xl p-8 h-full card-hover group relative overflow-hidden">
-                <div className="absolute -top-20 -right-20 h-40 w-40 rounded-full bg-aura opacity-0 group-hover:opacity-20 blur-3xl transition-opacity duration-500" />
-                <div className="relative">
-                  <div className="h-14 w-14 rounded-xl bg-aura grid place-items-center mb-6 group-hover:scale-110 transition-transform duration-300">
-                    <s.icon className="h-7 w-7 text-primary-foreground" />
+              <div className="glass rounded-2xl h-full card-hover group relative overflow-hidden">
+                <div className="relative aspect-[16/10] overflow-hidden">
+                  <img
+                    src={s.image}
+                    alt={s.title}
+                    width={800}
+                    height={512}
+                    loading="lazy"
+                    className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-card/60 via-transparent to-transparent" />
+                  <div className="absolute bottom-3 left-3 h-12 w-12 rounded-xl bg-aura grid place-items-center shadow-lg group-hover:scale-110 transition-transform duration-300">
+                    <s.icon className="h-6 w-6 text-primary-foreground" />
                   </div>
+                </div>
+                <div className="p-7">
                   <h3 className="text-xl font-semibold mb-3">{s.title}</h3>
                   <p className="text-muted-foreground leading-relaxed">{s.desc}</p>
                 </div>
