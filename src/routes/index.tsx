@@ -396,15 +396,44 @@ function WhyUs() {
 
 function Contact() {
   const [submitted, setSubmitted] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
   const [service, setService] = useState<string>("");
 
-  const onSubmit = (e: FormEvent<HTMLFormElement>) => {
+  const onSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setSubmitted(true);
-    toast.success("Thanks — we'll be in touch within 24 hours.");
-    setTimeout(() => setSubmitted(false), 6000);
-    (e.target as HTMLFormElement).reset();
-    setService("");
+    const form = e.currentTarget;
+    const fd = new FormData(form);
+    const payload = {
+      name: String(fd.get("name") ?? ""),
+      business: String(fd.get("business") ?? ""),
+      email: String(fd.get("email") ?? ""),
+      phone: String(fd.get("phone") ?? ""),
+      service,
+      message: String(fd.get("message") ?? ""),
+    };
+    if (!payload.service) {
+      toast.error("Please select a service.");
+      return;
+    }
+    setSubmitting(true);
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+      if (!res.ok) throw new Error(`Request failed (${res.status})`);
+      setSubmitted(true);
+      toast.success("Thanks — we'll be in touch within 24 hours.");
+      setTimeout(() => setSubmitted(false), 6000);
+      form.reset();
+      setService("");
+    } catch (err) {
+      console.error(err);
+      toast.error("Couldn't send your message. Please try again or call us directly.");
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   return (
@@ -528,9 +557,10 @@ function Contact() {
                   <Button
                     type="submit"
                     size="lg"
-                    className="btn-glow w-full bg-aura text-primary-foreground border-0 font-semibold h-14 text-base"
+                    disabled={submitting}
+                    className="btn-glow w-full bg-aura text-primary-foreground border-0 font-semibold h-14 text-base disabled:opacity-70"
                   >
-                    Send Message <ArrowRight className="ml-2 h-5 w-5" />
+                    {submitting ? "Sending..." : (<>Send Message <ArrowRight className="ml-2 h-5 w-5" /></>)}
                   </Button>
                   <p className="text-xs text-muted-foreground text-center">
                     We respect your inbox. No spam, ever.
