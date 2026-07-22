@@ -1,20 +1,16 @@
-## Plan: Add Website Development Service
+## Plan: Deliver contact form submissions by email (Resend)
 
-### What we'll do
-1. **Generate a warm-toned service image** for the new offering and save it to `src/assets/services/website.jpg`.
-2. **Add a new service entry** to the `services` array in `src/routes/index.tsx`.
-3. **Use a relevant icon** (e.g., `Globe` from `lucide-react`) and write a short description about building business websites.
-4. **Import the new image** at the top of the file and wire it into the new service object.
+Right now the contact form on the home page only shows a success animation — nothing is sent anywhere, which is why you don't see the details. I'll wire it up so every submission is emailed to **pariyashu22@gmail.com** via Resend.
 
-### Proposed service details
-- **Title:** "Website Design & Development"
-- **Description:** "Custom, fast-loading websites designed to convert visitors into leads and sales for your business."
-- **Icon:** `Globe` from `lucide-react`
+### Steps
+1. **Connect Resend** using the standard Resend connector (you'll approve the connection). This gives the app a `RESEND_API_KEY` and access to the Lovable connector gateway — no manual key handling.
+2. **Create a server route** at `src/routes/api/contact.ts` that:
+   - Accepts POST with `{ name, email, phone, message }`
+   - Validates input (basic length/format checks, required fields)
+   - Sends an email to `pariyashu22@gmail.com` via the Resend gateway, using `onboarding@resend.dev` as the From address (works immediately without a verified domain; replies go to the visitor's email via `reply_to`)
+   - Returns `{ ok: true }` or a proper error status
+3. **Update the contact form** in `src/routes/index.tsx` to POST to `/api/contact` on submit, show the existing success animation only after a 200 response, and display an inline error message if the send fails.
 
-### Open question
-Would you like a different title for this service? For example:
-- "Business Website Creation"
-- "Website Design & Development"
-- "Custom Website Solutions"
-
-If you prefer one of the above or have your own wording, let me know and I'll use it in the implementation.
+### Notes
+- Using `onboarding@resend.dev` as sender is fine for receiving submissions at your own inbox. If you later want emails to come from your own domain (e.g. `contact@auramarketi.com`), you'd verify that domain in Resend — happy to add that as a follow-up.
+- No database, no Google Form needed. Submissions land directly in your Gmail inbox.
