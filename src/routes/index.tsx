@@ -557,9 +557,10 @@ function Contact() {
                   <Button
                     type="submit"
                     size="lg"
-                    className="btn-glow w-full bg-aura text-primary-foreground border-0 font-semibold h-14 text-base"
+                    disabled={submitting}
+                    className="btn-glow w-full bg-aura text-primary-foreground border-0 font-semibold h-14 text-base disabled:opacity-70"
                   >
-                    Send Message <ArrowRight className="ml-2 h-5 w-5" />
+                    {submitting ? "Sending..." : (<>Send Message <ArrowRight className="ml-2 h-5 w-5" /></>)}
                   </Button>
                   <p className="text-xs text-muted-foreground text-center">
                     We respect your inbox. No spam, ever.
